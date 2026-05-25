@@ -8,7 +8,7 @@ import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }), 
+    ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot('mongodb://localhost:27017/jwt-auth'),
     AuthModule,
     ProductsModule,
