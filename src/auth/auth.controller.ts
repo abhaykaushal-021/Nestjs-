@@ -25,7 +25,7 @@ export class AuthController {
   @ApiBody({ type: AuthDto })
   @Post('signup')
   signup(@Body() body: AuthDto) {
-    return this.authService.signup(body.email, body.password);
+    return this.authService.signup(body.email, body.password, body.role);
   }
 
   @ApiOperation({ summary: 'Login and get JWT token' })

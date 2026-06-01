@@ -1,5 +1,12 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import {
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
+import { Role } from '../user.schema';
 
 export class AuthDto {
   @ApiProperty({ example: 'user@example.com' })
@@ -11,4 +18,9 @@ export class AuthDto {
   @IsString()
   @IsNotEmpty()
   password!: string;
+
+  @ApiPropertyOptional({ example: 'user', enum: Role })
+  @IsOptional()
+  @IsEnum(Role)
+  role?: Role;
 }

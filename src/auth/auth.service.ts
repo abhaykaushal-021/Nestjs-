@@ -4,7 +4,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User, UserDocument } from './user.schema';
+import { Role, User, UserDocument } from './user.schema';
 import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
@@ -16,11 +16,11 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signup(email: string, password: string) {
+  async signup(email: string, password: string, role: Role = Role.USER) {
     const existing = await this.userModel.findOne({ email });
     if (existing) throw new ConflictException('User already exists');
     const hash = await bcrypt.hash(password, 10);
-    const user = new this.userModel({ email, password: hash });
+    const user = new this.userModel({ email, password: hash, role });
     return user.save();
   }
 

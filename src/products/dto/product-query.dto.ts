@@ -40,7 +40,7 @@ export class ProductQueryDto {
   @IsString()
   name?: string;
 
-  @ApiPropertyOptional({ example: 'A powerful laptop' })
+  @ApiPropertyOptional({ example: 'laptop' })
   @IsOptional()
   @IsString()
   description?: string;
